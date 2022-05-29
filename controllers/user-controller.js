@@ -21,4 +21,21 @@ const userCreate = async ({body}, res) => {
     res.status(500).json({message: `Failed to create user.`});
   }
 }
-module.exports = {userCreate};
+
+const userGetAll = async (req, res) => {
+  try {
+    // const {username, email} = body;
+    // if (username === "" || email === "") {
+    //   res.status(400).json({message: "Missing username and/or email."})
+    //   return;
+    // }
+    const userData = await User.find({})
+    console.log("userData: ",userData )
+    res.status(200).json({data: userData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to create user.`});
+  }
+}
+module.exports = {userCreate, userGetAll};
