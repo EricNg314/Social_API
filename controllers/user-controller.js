@@ -54,4 +54,17 @@ const userGetById = async ({params}, res) => {
     res.status(500).json({message: `Failed to get by user ID.`});
   }
 }
-module.exports = {userCreate, userGetAll, userGetById};
+
+const userUpdateById = async ({params, body}, res) => {
+  try {
+    const userData = await User.findByIdAndUpdate({ _id: params.id }, body, {new: true})
+
+    res.status(200).json({data: userData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to get by user ID.`});
+  }
+}
+
+module.exports = {userCreate, userGetAll, userGetById, userUpdateById};
