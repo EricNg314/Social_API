@@ -1,5 +1,4 @@
 
-const res = require('express/lib/response');
 const { User } = require('../models');
 
 const userCreate = async ({body}, res) => {
@@ -30,7 +29,29 @@ const userGetAll = async (req, res) => {
       
    } catch (error) {
     console.log(error);
-    res.status(500).json({message: `Failed to create user.`});
+    res.status(500).json({message: `Failed to get all users.`});
   }
 }
-module.exports = {userCreate, userGetAll};
+
+const userGetById = async ({params}, res) => {
+  try {
+    const userData = await User.findById({ _id: params.id })
+    .populate({
+      path: 'friends',
+      select: '-__v'
+    })
+    .select('-__v')
+    .populate({
+      path: 'thoughts',
+      select: '-__v'
+    })
+    .select('-__v')
+    // console.log("userData: ",userData )
+    res.status(200).json({data: userData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to get by user ID.`});
+  }
+}
+module.exports = {userCreate, userGetAll, userGetById};
