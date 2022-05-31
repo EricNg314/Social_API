@@ -63,8 +63,20 @@ const userUpdateById = async ({params, body}, res) => {
       
    } catch (error) {
     console.log(error);
-    res.status(500).json({message: `Failed to get by user ID.`});
+    res.status(500).json({message: `Failed to update by user ID.`});
   }
 }
 
-module.exports = {userCreate, userGetAll, userGetById, userUpdateById};
+const userDeleteById = async ({params, body}, res) => {
+  try {
+    const userData = await User.findOneAndDelete({ _id: params.id })
+
+    res.status(200).json({data: userData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to delete by user ID.`});
+  }
+}
+
+module.exports = {userCreate, userGetAll, userGetById, userUpdateById, userDeleteById};

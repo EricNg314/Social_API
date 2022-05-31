@@ -1,5 +1,9 @@
 const router = require('express').Router();
-const { thoughtCreate, thoughtGetAll, thoughtGetById, thoughtUpdateById } = require('../../controllers/thought-controller');
+const { thoughtCreate, 
+  thoughtGetAll, 
+  thoughtGetById, 
+  thoughtUpdateById,
+  thoughtDeleteById } = require('../../controllers/thought-controller');
 
 // /api/thoughts
 router.route('/')
@@ -41,6 +45,16 @@ router.route('/:id')
     const {params, body} = req
     try {
       await thoughtUpdateById({params, body}, res)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+  .delete(async (req, res) => {
+    console.log(`${req.method}: ${req.baseUrl}`);
+    const { params } = req
+    try {
+      await thoughtDeleteById({ params }, res)
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

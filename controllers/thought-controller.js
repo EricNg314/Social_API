@@ -61,7 +61,19 @@ const thoughtUpdateById = async ({params, body}, res) => {
       
    } catch (error) {
     console.log(error);
-    res.status(500).json({message: `Failed to get by thought ID.`});
+    res.status(500).json({message: `Failed to update by thought ID.`});
   }
 }
-module.exports = {thoughtCreate, thoughtGetAll, thoughtGetById, thoughtUpdateById};
+
+const thoughtDeleteById = async ({params, body}, res) => {
+  try {
+    const thoughtData = await Thought.findOneAndDelete({ _id: params.id })
+
+    res.status(200).json({data: thoughtData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to delete by thought ID.`});
+  }
+}
+module.exports = {thoughtCreate, thoughtGetAll, thoughtGetById, thoughtUpdateById, thoughtDeleteById};

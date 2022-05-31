@@ -1,5 +1,10 @@
 const router = require('express').Router();
-const { userCreate, userGetAll, userGetById, userUpdateById } = require('../../controllers/user-controller');
+const { 
+  userCreate, 
+  userGetAll, 
+  userGetById, 
+  userUpdateById, 
+  userDeleteById } = require('../../controllers/user-controller');
 
 // /api/users
 router.route('/')
@@ -42,6 +47,16 @@ router.route('/:id')
     const {params, body} = req
     try {
       await userUpdateById({params, body}, res)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+  .delete(async (req, res) => {
+    console.log(`${req.method}: ${req.baseUrl}`);
+    const { params } = req
+    try {
+      await userDeleteById({ params }, res)
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
