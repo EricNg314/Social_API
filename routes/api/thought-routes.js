@@ -1,9 +1,13 @@
 const router = require('express').Router();
-const { thoughtCreate, 
+const { 
+  thoughtCreate, 
   thoughtGetAll, 
   thoughtGetById, 
   thoughtUpdateById,
   thoughtDeleteById } = require('../../controllers/thought-controller');
+  const { 
+    reactionCreate, 
+    reactionDeleteById } = require('../../controllers/reaction-controller');
 
 // /api/thoughts
 router.route('/')
@@ -60,5 +64,30 @@ router.route('/:id')
       res.status(500).json(error);
     }
   })
+
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions')
+  .post(async (req, res) => {
+    console.log(`${req.method}: ${req.baseUrl}`);
+    const {params, body} = req
+    try {
+      await reactionCreate({params, body}, res)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+  .delete(async (req, res) => {
+    console.log(`${req.method}: ${req.baseUrl}`);
+    const { params, query } = req
+    try {
+      await reactionDeleteById({ params, query }, res)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+
+
 
 module.exports = router;

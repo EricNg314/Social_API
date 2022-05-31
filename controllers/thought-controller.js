@@ -23,7 +23,7 @@ const thoughtCreate = async ({body}, res) => {
 
     res.status(200).json({message: `Thought created.`})
 
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to create thought.`});
   }
@@ -35,7 +35,7 @@ const thoughtGetAll = async (req, res) => {
     // console.log("thoughtData: ",thoughtData )
     res.status(200).json({data: thoughtData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to get all thoughts.`});
   }
@@ -47,7 +47,7 @@ const thoughtGetById = async ({params}, res) => {
     // console.log("thoughtData: ",thoughtData )
     res.status(200).json({data: thoughtData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to get by thought ID.`});
   }
@@ -59,7 +59,7 @@ const thoughtUpdateById = async ({params, body}, res) => {
 
     res.status(200).json({data: thoughtData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to update by thought ID.`});
   }
@@ -71,7 +71,7 @@ const thoughtDeleteById = async ({params, body}, res) => {
 
     res.status(200).json({data: thoughtData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to delete by thought ID.`});
   }

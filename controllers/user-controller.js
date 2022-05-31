@@ -15,7 +15,7 @@ const userCreate = async ({body}, res) => {
     // console.log("userData: ",userData )
     res.status(200).json({message: `User ${userData.username} created.`})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to create user.`});
   }
@@ -27,7 +27,7 @@ const userGetAll = async (req, res) => {
     // console.log("userData: ",userData )
     res.status(200).json({data: userData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to get all users.`});
   }
@@ -49,7 +49,7 @@ const userGetById = async ({params}, res) => {
     // console.log("userData: ",userData )
     res.status(200).json({data: userData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to get by user ID.`});
   }
@@ -61,7 +61,7 @@ const userUpdateById = async ({params, body}, res) => {
 
     res.status(200).json({data: userData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to update by user ID.`});
   }
@@ -73,7 +73,7 @@ const userDeleteById = async ({params, body}, res) => {
 
     res.status(200).json({data: userData})
       
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: `Failed to delete by user ID.`});
   }
