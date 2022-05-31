@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { thoughtCreate, thoughtGetAll, thoughtGetById } = require('../../controllers/thought-controller');
+const { thoughtCreate, thoughtGetAll, thoughtGetById, thoughtUpdateById } = require('../../controllers/thought-controller');
 
 // /api/thoughts
 router.route('/')
@@ -31,6 +31,16 @@ router.route('/:id')
     const {params} = req
     try {
       await thoughtGetById({params}, res)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+  .put(async (req, res) => {
+    console.log(`${req.method}: ${req.baseUrl}`);
+    const {params, body} = req
+    try {
+      await thoughtUpdateById({params, body}, res)
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

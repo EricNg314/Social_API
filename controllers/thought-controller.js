@@ -52,4 +52,16 @@ const thoughtGetById = async ({params}, res) => {
     res.status(500).json({message: `Failed to get by thought ID.`});
   }
 }
-module.exports = {thoughtCreate, thoughtGetAll, thoughtGetById};
+
+const thoughtUpdateById = async ({params, body}, res) => {
+  try {
+    const thoughtData = await Thought.findByIdAndUpdate({ _id: params.id }, body, {new: true})
+
+    res.status(200).json({data: thoughtData})
+      
+   } catch (error) {
+    console.log(error);
+    res.status(500).json({message: `Failed to get by thought ID.`});
+  }
+}
+module.exports = {thoughtCreate, thoughtGetAll, thoughtGetById, thoughtUpdateById};
