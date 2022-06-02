@@ -11,8 +11,7 @@
 A social api created with MongoDB as an example of a NoSQL backend.
 
 
-
-
+https://user-images.githubusercontent.com/38299163/171596696-301a0b9b-a31b-432d-94a1-516803919aee.mov
 
 
 
